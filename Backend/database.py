@@ -1,7 +1,6 @@
 import mysql.connector
 from mysql.connector import pooling
 
-# MySQL connection pool
 dbconfig = {
     "host": "localhost",
     "user": "csbs_19",

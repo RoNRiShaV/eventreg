@@ -1,54 +1,30 @@
-import { useEffect, useState } from "react";
-import { API } from "./api/api";
-import RegistrationForm from "./components/RegistrationForm";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import CreateEventPage from "./pages/CreateEventPage";
+import EventsPage from "./pages/EventsPage";
+import { useEffect } from "react";
 
-function App() {
-  const [events, setEvents] = useState([]);
-  const [selectedEvent, setSelectedEvent] = useState(null);
-  const [message, setMessage] = useState("");
+export default function App() {
+  const navigate = useNavigate();
 
+  // Optional: redirect to home if route not found
   useEffect(() => {
-    API.get("/events")
-      .then(res => setEvents(res.data))
-      .catch(() => setMessage("Error fetching events"));
-  }, []);
+    if (window.location.pathname === "/") {
+      navigate("/");
+    }
+  }, [navigate]);
 
   return (
-    <div className="p-6 font-sans">
-      <h1 className="text-3xl font-bold mb-6">Event Registration</h1>
-
-      {message && (
-        <div className="mb-4 p-2 bg-red-100 text-red-700 rounded">{message}</div>
-      )}
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {events.map(event => (
-          <div key={event.id} className="border p-4 rounded-lg shadow hover:shadow-md transition">
-            <h3 className="text-xl font-semibold mb-2">{event.title}</h3>
-            <p className="mb-1">{event.description}</p>
-            <p className="mb-1"><b>Date:</b> {event.date} {event.time}</p>
-            <p className="mb-1"><b>Location:</b> {event.location}</p>
-            <p className="mb-1"><b>Capacity:</b> {event.capacity}</p>
-            <p className="mb-2"><b>Registered:</b> {event.registered_count}</p>
-            <button
-              onClick={() => setSelectedEvent(event)}
-              className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition"
-            >
-              Register
-            </button>
-          </div>
-        ))}
+    <div className="min-h-screen bg-gray-100">
+      <Navbar />
+      <div className="p-6">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/create-event" element={<CreateEventPage />} />
+          <Route path="/events" element={<EventsPage />} />
+        </Routes>
       </div>
-
-      {selectedEvent && (
-        <RegistrationForm
-          event={selectedEvent}
-          setSelectedEvent={setSelectedEvent}
-          setMessage={setMessage}
-        />
-      )}
     </div>
   );
 }
-
-export default App;
