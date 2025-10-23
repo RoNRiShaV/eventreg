@@ -1,9 +1,16 @@
 import EventForm from "../components/EventForm";
+import Navbar from "../pages/Navbar"; // import navbar
+import "./Home.css";
 
 export default function CreateEventPage() {
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <EventForm />
+    <div className="home-container">
+      <Navbar />
+
+      <h1 className="page-title">Create a New Event</h1>
+      <div className="form-wrapper">
+        <EventForm />
+      </div>
     </div>
   );
 }

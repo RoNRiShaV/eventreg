@@ -1,28 +1,22 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import CreateEventPage from "./pages/CreateEventPage";
 import EventsPage from "./pages/EventsPage";
-import { useEffect } from "react";
+import CreateEventPage from "./pages/createEventPage";
+
+import "./pages/style.css";
 
 export default function App() {
-  const navigate = useNavigate();
-
-  // Optional: redirect to home if route not found
-  useEffect(() => {
-    if (window.location.pathname === "/") {
-      navigate("/");
-    }
-  }, [navigate]);
-
   return (
-    <div className="min-h-screen bg-gray-100">
-      <Navbar />
-      <div className="p-6">
+    <div className="app-container">
+      {/* Top Navbar */}
+      
+
+      {/* Main content */}
+      <div className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/create-event" element={<CreateEventPage />} />
           <Route path="/events" element={<EventsPage />} />
+          <Route path="/create-event" element={<CreateEventPage />} />
         </Routes>
       </div>
     </div>

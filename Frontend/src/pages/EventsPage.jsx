@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { API } from "../api/api";
 import RegistrationForm from "../components/RegistrationForm";
+import { API } from "../api/api";
+import Navbar from "../pages/Navbar"; // import navbar
+import "./Home.css";
 
 export default function EventsPage() {
   const [events, setEvents] = useState([]);
@@ -14,37 +16,23 @@ export default function EventsPage() {
   }, []);
 
   return (
-    <div className="p-6 font-sans">
-      <h1 className="text-3xl font-bold mb-6">Available Events</h1>
+    <div className="home-container">
+      <Navbar />
 
-      {message && (
-        <div className="mb-4 p-2 bg-red-100 text-red-700 rounded">{message}</div>
-      )}
+      <h1 className="page-title">Available Events</h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {message && <div className="error-message">{message}</div>}
+
+      <div className="cards-container">
         {events.map((event) => (
-          <div
-            key={event.id}
-            className="border p-4 rounded-lg shadow hover:shadow-md transition bg-white"
-          >
-            <h3 className="text-xl font-semibold mb-2">{event.title}</h3>
-            <p className="mb-1">{event.description}</p>
-            <p className="mb-1">
-              <b>Date:</b> {event.date} {event.time}
-            </p>
-            <p className="mb-1">
-              <b>Location:</b> {event.location}
-            </p>
-            <p className="mb-1">
-              <b>Capacity:</b> {event.capacity}
-            </p>
-            <p className="mb-2">
-              <b>Registered:</b> {event.registered_count}
-            </p>
-            <button
-              onClick={() => setSelectedEvent(event)}
-              className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition"
-            >
+          <div key={event.id} className="card">
+            <h3>{event.title}</h3>
+            <p>{event.description}</p>
+            <p><b>Date:</b> {event.date} {event.time}</p>
+            <p><b>Location:</b> {event.location}</p>
+            <p><b>Capacity:</b> {event.capacity}</p>
+            <p><b>Registered:</b> {event.registered_count}</p>
+            <button onClick={() => setSelectedEvent(event)} className="btn primary">
               Register
             </button>
           </div>

@@ -1,0 +1,191 @@
+/* General container */
+.container {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9f9f9;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 40px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.nav-links a {
+  margin-left: 24px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: #007bff;
+}
+
+/* Page title */
+.page-title {
+  text-align: center;
+  font-size: 32px;
+  margin: 40px 0 20px 0;
+  color: #333;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 80px 20px 40px 20px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.hero p {
+  font-size: 20px;
+  color: #666;
+}
+
+/* Cards */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+  padding: 0 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 24px;
+  width: 300px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.card h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.card p {
+  color: #555;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.card a, .card button {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 8px 0;
+}
+
+.card button.btn.primary {
+  background: #007bff;
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px 16px;
+  margin-top: 12px;
+}
+
+.card button.btn.primary:hover {
+  background: #0056b3;
+}
+
+/* Error message */
+.error-message {
+  max-width: 600px;
+  margin: 0 auto 20px auto;
+  padding: 12px;
+  background-color: #ffe2e2;
+  color: #a70000;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* CTA Section */
+.cta {
+  text-align: center;
+  padding: 60px 20px;
+  background: #fff;
+  margin: 40px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.cta h2 {
+  font-size: 32px;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.cta p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 24px;
+}
+
+.cta-buttons .btn {
+  padding: 12px 32px;
+  margin: 8px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn.primary {
+  background: #333;
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background: #555;
+}
+
+.btn.secondary {
+  background: #fff;
+  color: #333;
+  border: 2px solid #333;
+}
+
+.btn.secondary:hover {
+  background: #f0f0f0;
+}
+
+/* Forms wrapper */
+.form-wrapper {
+  max-width: 600px;
+  margin: 0 auto 40px auto;
+  padding: 20px;
+}
