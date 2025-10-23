@@ -1,0 +1,55 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: event-reg-system-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: eventdb
+      MYSQL_USER: eventuser
+      MYSQL_PASSWORD: eventpass
+    ports:
+      - "3307:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - event-reg-system-net   # added network so backend can resolve 'db'
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: event-reg-system-backend
+    restart: always
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db       # service name of MySQL
+      DB_USER: eventuser
+      DB_PASSWORD: eventpass
+      DB_NAME: eventdb
+      DB_PORT: 3306
+    ports:
+      - "8000:8000"
+    networks:
+      - event-reg-system-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: event-reg-system-frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    networks:
+      - event-reg-system-net
+
+volumes:
+  db-data:
+
+networks:
+  event-reg-system-net:
+    driver: bridge
